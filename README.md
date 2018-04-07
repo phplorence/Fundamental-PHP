@@ -391,8 +391,22 @@
     
     https://app.pluralsight.com/player?course=laravel-php-framework-getting-started-the-basics&author=max-schwarzmueller&name=laravel-php-framework-getting-started-the-basics-m3&clip=8&mode=live
     
+    type code
+    Route::post('admin/create', function () {
+        return "It works now!";
+    })->name('admin.create');
 
+    Route::get('admin/edit/{id}', function () {
+        return view('admin.edit');
+    })->name('admin.edit');
 
+    Route::post('admin/edit', function () {
+        return "It works now!";
+    })->name('admin.update');
+
+    type <form action="{{ route('admin.create') }}" method="post"> in **admin/create.blade.php**
+    type <form action="{{ route('admin.update') }}" method="post"> in **admin/edit.blade.php**
+    
     
     
     
