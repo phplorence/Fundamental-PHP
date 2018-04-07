@@ -7,6 +7,12 @@
     php --version 
     composer
     composer create-project laravel/laravel getting-started
+    Alt + F12 (PHP Storm)
+    php artisan serve
+    
+    Shiftx2 web.php
+    Shiftx2 welcome.blade
+    
 
 # Setting up a Laravel Project
 Command line: 
