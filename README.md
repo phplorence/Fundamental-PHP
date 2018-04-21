@@ -13,6 +13,15 @@
     Shiftx2 web.php
     Shiftx2 welcome.blade
     
+    php artisan migrate
+    php artisan migrate:refresh
+    
+    php artisan make:controller PhotoController
+    
+    php artisan route:list
+    php artisan make:auth
+    
+    
 
 # Setting up a Laravel Project
 Command line: 
