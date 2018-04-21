@@ -21,7 +21,13 @@
     php artisan route:list
     php artisan make:auth
     
+    truncate -s 0 /app/storage/logs/laravel.log
     
+    
+    DEBUG:
+    Log::info('AdminLoginController', ['request' => $request->all()]);
+    Log::info('AdminLoginController', ['result' => 'login']);
+    dd( Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password]));
 
 # Setting up a Laravel Project
 Command line: 
