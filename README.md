@@ -28,6 +28,19 @@
     Log::info('AdminLoginController', ['request' => $request->all()]);
     Log::info('AdminLoginController', ['result' => 'login']);
     dd( Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password]));
+    
+    
+    DB
+    try {
+            DB::connection()->getPdo();
+            dd("Successfully");
+        } catch (\Exception $e) {
+            dd("Could not connect to the database.  Please check your configuration.");
+        }
+        
+    DB: Admin
+    dd(Admin::all());
+    
 
 # Setting up a Laravel Project
 Command line: 
