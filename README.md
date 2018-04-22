@@ -41,6 +41,12 @@
     DB: Admin
     dd(Admin::all());
     
+    CREATE PASSWORK: 
+    $temp = Hash::make("Abc@123456");
+    dd($temp);
+    
+    Remove register route from Auth::routes
+    Illuminate/Routing/Router.php
 
 # Setting up a Laravel Project
 Command line: 
