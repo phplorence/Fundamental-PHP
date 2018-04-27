@@ -21,8 +21,10 @@
     php artisan route:list
     php artisan make:auth
     
-    truncate -s 0 /app/storage/logs/laravel.log
+    php artisan make:migration create_permissions_table --create=permissions
     
+    truncate -s 0 /app/storage/logs/laravel.log
+    echo "" > storage/logs/laravel.log
     
     DEBUG:
     Log::info('AdminLoginController', ['request' => $request->all()]);
