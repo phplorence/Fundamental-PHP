@@ -21,6 +21,8 @@
     php artisan route:list
     php artisan make:auth
     
+    php artisan migrate:rollback --step=1
+    
     php artisan make:migration create_permissions_table --create=permissions
     
     truncate -s 0 /app/storage/logs/laravel.log
