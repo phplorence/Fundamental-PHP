@@ -51,6 +51,8 @@
     
     Remove register route from Auth::routes
     Illuminate/Routing/Router.php
+    
+    composer install [**failed to open stream: No such file or directory laravel**]
 
 # Setting up a Laravel Project
 Command line: 
