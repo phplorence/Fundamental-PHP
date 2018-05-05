@@ -53,6 +53,14 @@
     Illuminate/Routing/Router.php
     
     composer install [**failed to open stream: No such file or directory laravel**]
+    
+#DataTables
+    
+    composer require yajra/laravel-datatables-oracle:^8.0
+    composer require yajra/laravel-datatables:^1.0
+    
+    Yajra\DataTables\DataTablesServiceProvider::class,DataTables warning: table id=incenseTable - Requested unknown
+    php artisan vendor:publish --tag=datatables
 
 # Setting up a Laravel Project
 Command line: 
