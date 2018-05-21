@@ -61,6 +61,8 @@
     
     Yajra\DataTables\DataTablesServiceProvider::class,DataTables warning: table id=incenseTable - Requested unknown
     php artisan vendor:publish --tag=datatables
+    
+    ALTER TABLE tablename AUTO_INCREMENT = 1
 
 # Setting up a Laravel Project
 Command line: 
