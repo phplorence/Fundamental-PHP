@@ -225,4 +225,76 @@ class CreateUserVerificationsTable extends Migration
 ```
 
 <p name="e34f" id="e34f" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Update </strong><em class="markup--em markup--p-em">app/User.php</em></p>
+```php
+class User extends Authenticatable
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+}
+```
+
+```php
+class User extends Authenticatable implements JWTSubject
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password', 'is_verified'
+    ];
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+}
+```
+
+<p name="b851" id="b851" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Update&nbsp;.env file</strong></p>
+- Next, we need to update our database and mail settings, update the .env file
 
