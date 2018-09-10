@@ -66,3 +66,6 @@
 
 # Setting up a Laravel Project
 Command line: 
+
+# Load header and footer from Module in Laravel
+<h4 name="7e0d" id="7e0d" class="graf graf--h4 graf-after--p">Step 1: Create new project and install&nbsp;jwt-auth</h4>
