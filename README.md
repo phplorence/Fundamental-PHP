@@ -135,6 +135,40 @@ protected $routeMiddleware = [
 <h4 name="5ea1" id="5ea1" class="graf graf--h4 graf-after--figure">Step 3: Set Up Routes&nbsp;(*)</h4>
 <strong class="markup--strong markup--p-strong">routes/api.php</strong>
 
+```php
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::post('recover', 'AuthController@recover');
 
+Route::group(['middleware' => ['jwt.auth']], function() {
+    Route::get('logout', 'AuthController@logout');
+    Route::get('test', function(){
+        return response()->json(['foo'=>'bar']);
+    });
+});
+```
+
+- Open up routes/web.php and add the route for verifying.
+
+```php
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
+
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
+
+Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('password.reset');
+
+```
+<h4 name="dd32" id="dd32" class="graf graf--h4 graf-after--figure">Step 4: Set Up Database&nbsp;(*)</h4>
 
