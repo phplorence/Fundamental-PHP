@@ -298,8 +298,119 @@ class User extends Authenticatable implements JWTSubject
 <p name="b851" id="b851" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Update&nbsp;.env file</strong></p>
 - Next, we need to update our database and mail settings, update the .env file
 
-<p name="d5fa" id="d5fa" class="graf graf--p graf-after--figure">And run migration</p>
+- <p name="d5fa" id="d5fa" class="graf graf--p graf-after--figure">And run migration</p>
 
+```php
+php artisan migrate
+```
 
+- if you get the error below
+- Open up Providers/AppServiceProvider.php and update the boot function
 
+```php
+<?php
+use Illuminate\Support\Facades\Schema;
+...
+  
+  public function boot()
+  {
+    Schema::defaultStringLength(191);
+  }
+```
+
+<h4 name="bdcd" id="bdcd" class="graf graf--h4 graf-after--figure">Step 5: Register and Verify Email Address&nbsp;(*)</h4>
+- Create a new controller
+
+```php
+php artisan make:controller AuthController
+```
+
+- This will create AuthController.php in the app/Http/Controllers directory, paste the code below.
+
+```php
+
+<?php
+
+namespace App\Http\Controllers;
+use App\User;
+use DB;
+use Hash;
+use Illuminate\Http\Request;
+use JWTAuth;
+use Mail;
+use Validator;
+
+class AuthController extends Controller
+{
+    /**
+     * API Register
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $credentials = $request->only('name', 'email', 'password');
+
+        $rules = [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users'
+        ];
+
+        $validator = Validator::make($credentials, $rules);
+
+        if($validator->fails()) {
+            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
+        }
+
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        $verification_code = str_random(30); //Generate verification code
+
+        DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
+
+        $subject = "Please verify your email address.";
+        Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
+            function($mail) use ($email, $name, $subject){
+                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                $mail->to($email, $name);
+                $mail->subject($subject);
+            });
+        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
+    }
+}
+```
+
+<strong class="markup--strong markup--p-strong">Verify Email Address</strong>
+- In the resources/views directory, create a new directory called email. Then create the file verify.blade.php. Populate the file with the code below.
+
+```php
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div>
+    Hi {{ $name }},
+    <br>
+    Thank you for creating an account with us. Don't forget to complete your registration!
+    <br>
+    Please click on the link below or copy it into the address bar of your browser to confirm your email address:
+    <br>
+
+    <a href="{{ url('user/verify', $verification_code)}}">Confirm my email address </a>
+
+    <br/>
+</div>
+
+</body>
+</html>
+```
+
+<p name="c44c" id="c44c" class="graf graf--p graf-after--figure">Add the verifyUser function to <strong class="markup--strong markup--p-strong">AuthController.php</strong></p>
 
