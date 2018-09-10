@@ -171,4 +171,58 @@ Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('p
 
 ```
 <h4 name="dd32" id="dd32" class="graf graf--h4 graf-after--figure">Step 4: Set Up Database&nbsp;(*)</h4>
+- Since we are going to allow users to create their accounts within the application, we will need a table to store all of our users. Thankfully, Laravel already ships with a migration to create a basic users table, so we do not need to manually generate one. The default migration for the users table is located in the database/migrations directory.
+
+- We need to create a new table and add an extra column to the users table. Firstly, we need a boolean field ‘is_verified’ to keep track of whether a user has verified their email address, this will be set to false by default.
+
+- Create a new table “user_verifications” this table will store the user’s verification code. When the user registers, a verification code is generated and stored in the table and an email with a verification link is sent.
+
+- When a user follows this link, we take the passed in verification code and search for it within the user_verifications table. If a matching verified code is found we set the is_verified field for this user to true.
+
+```php
+php artisan make:migration create_user_verifications_table
+```
+
+<strong class="markup--strong markup--p-strong">The new migration file is created in the database/migrations</strong>
+
+```php
+class CreateUserVerificationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('user_verifications', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->string('token');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_verified')->default(0);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('user_verifications');
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_verified');
+        });
+    }
+}
+```
+
+<p name="e34f" id="e34f" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Update </strong><em class="markup--em markup--p-em">app/User.php</em></p>
 
