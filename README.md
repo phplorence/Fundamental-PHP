@@ -298,3 +298,8 @@ class User extends Authenticatable implements JWTSubject
 <p name="b851" id="b851" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Update&nbsp;.env file</strong></p>
 - Next, we need to update our database and mail settings, update the .env file
 
+<p name="d5fa" id="d5fa" class="graf graf--p graf-after--figure">And run migration</p>
+
+
+
+
