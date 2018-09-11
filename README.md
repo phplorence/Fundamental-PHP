@@ -691,9 +691,9 @@ MAIL_ENCRYPTION=tls
 - Check database: 
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/15.png)
 - Open url: http://127.0.0.1:8000/login
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/16.png)
 - Result after login website successfully
-
-
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/17.png)
 
 - Create a POST request to api/login with form-data under Body tab.
 
