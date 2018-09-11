@@ -712,5 +712,66 @@ MAIL_ENCRYPTION=tls
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/21.png)
 
 #### Research structure of 
+- Research about **BaseMiddleware.php**
+- Configure url with postman (add header to method, we need to call)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/22.png)
 
+#### Get value from header
+```php
+Route::group(['middleware' => ['jwt.auth']], function() {
+
+    Route::get('logout', 'AuthController@logout');
+
+    /*Route::get('test', function(){
+        return response()->json(['foo'=>'bar']);
+    });*/
+
+    Route::get('test', 'TestController@index')->name('test');
+});
+```
+
+```php
+<?php
+namespace App\Http\Controllers;
+
+class TestController extends Controller
+{
+    public function index() {
+        return response()->json(['foo'=>'Hello World']);
+    }
+}
+```
+- How to check request and get value from header
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/23.png)
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Log;
+
+class TestController extends Controller
+{
+    public function index() {
+        Log::info(request()->header('api_token'));
+        return response()->json(['foo'=>'Hello World']);
+    }
+}
+```
+
+- Result:
+
+```
+[2018-09-11 07:47:56] local.INFO:   
+[2018-09-11 07:48:25] local.INFO: sfdsfdsfdsfs  
+
+```
+
+<h1 class="title style-scope ytd-video-primary-info-renderer"><yt-formatted-string class="style-scope ytd-video-primary-info-renderer">Advanced Debugging in PhpStorm - PhpStorm Video Tutorial</yt-formatted-string></h1>
+
+
+
+
+#### How to authenticate with it.
 
