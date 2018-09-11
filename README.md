@@ -695,9 +695,14 @@ MAIL_ENCRYPTION=tls
 - Result after login website successfully
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/17.png)
 
-- Create a POST request to api/login with form-data under Body tab.
-
-
+#### Login with API: 
+- Specify api: ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/17.png)
+- Using postman to excute url: http://127.0.0.1:8000/api/login
+- Change form
+```php
+<form class="form-horizontal" method="POST" action="{{ route('api.login') }}">
+```
+- Reesult: ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/18.png)
 
 
 
