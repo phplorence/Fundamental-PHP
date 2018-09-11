@@ -548,5 +548,62 @@ Token not provided
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/3.png)
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/4.png)
 
-- 
+- Analyze code below
+
+```php
+public function register(Request $request)
+    {
+        $credentials = $request->only('name', 'email', 'password');
+
+        $rules = [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users'
+        ];
+
+        $validator = Validator::make($credentials, $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->messages()]);
+        }
+
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        $verification_code = str_random(30);
+
+        DB::table('user_verifications')->insert(['user_id' => $user->id, 'token' => $verification_code]);
+
+        $subject = "Please verify your email address.";
+        Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
+            function ($mail) use ($email, $name, $subject) {
+                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                $mail->to($email, $name);
+                $mail->subject($subject);
+            });
+        return response()->json(['success' => true, 'message' => 'Thanks for signing up! Please check your email to complete your registration.']);
+    }
+```
+
+- Clearly, we will see json is returned when click button create. By the way, I want to use ajax to see the result, but if we didn't use Ajax in client, Let's use postman to see the result. It's better for now.
+- Try to use dd(#request) and check how many paramaters is sent from client?
+
+```php
+Route::post('register', 'AuthController@register')->name('api.register');
+```
+
+```php
+<div class="panel-heading">Register</div>
+    <div class="panel-body">
+        <form class="form-horizontal" method="POST" action="{{ route('api.register') }}">
+            {{ csrf_field() }}
+```
+
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/5.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/6.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/7.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/8.png)
+
+
 
