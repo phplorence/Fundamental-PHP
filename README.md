@@ -708,6 +708,9 @@ MAIL_ENCRYPTION=tls
 <p name="7c4c" id="7c4c" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Try accessing test route with the token [GET]</strong></p>
 - Link: http://127.0.0.1:8000/api/test?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNTM2NjQ3MjEwLCJleHAiOjE1MzY2NTA4MTAsIm5iZiI6MTUzNjY0NzIxMCwianRpIjoiY05GMWJ5OU85QUJDcUlRTCIsInN1YiI6MTgsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vovTS4lq77TDDbHlf9DBBSsjtN6N7Be9mcazGfyUmjc
 - Result:
-- Reesult: ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/20.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/20.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/21.png)
+
+#### Research structure of 
 
 
