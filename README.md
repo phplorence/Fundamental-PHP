@@ -605,5 +605,7 @@ Route::post('register', 'AuthController@register')->name('api.register');
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/7.png)
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/8.png)
 
+<h1 class="title style-scope ytd-video-primary-info-renderer"><yt-formatted-string class="style-scope ytd-video-primary-info-renderer">Laravel 5.4 Tutorial | Send Email To Gmail #1  | Part 24 | Bitfumes</yt-formatted-string></h1>
+
 
 
