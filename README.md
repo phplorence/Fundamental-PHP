@@ -543,5 +543,10 @@ Token not provided
 - Access this link http://127.0.0.1:8000/register in browser to create a new user with Laravel
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/1.png)
 
+- Observe login.blade.php, you will understand default is "login" and now we will change "api/login".
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/2.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/3.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/4.png)
 
+- 
 
