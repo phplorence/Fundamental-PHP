@@ -607,5 +607,40 @@ Route::post('register', 'AuthController@register')->name('api.register');
 
 <h1 class="title style-scope ytd-video-primary-info-renderer"><yt-formatted-string class="style-scope ytd-video-primary-info-renderer">Laravel 5.4 Tutorial | Send Email To Gmail #1  | Part 24 | Bitfumes</yt-formatted-string></h1>
 
+- Where is my issue?
 
+```php
+Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
+            function ($mail) use ($email, $name, $subject) {
+                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                $mail->to($email, $name);
+                $mail->subject($subject);
+            });
+```
+
+- Fix it right now
+
+```php
+Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
+    function ($mail) use ($email, $name, $subject) {
+        $mail->from(getenv('gamebfme2test@gmail.com'), 'gamebfme2test@gmail.com');
+        $mail->to($email, $name);
+        $mail->subject($subject);
+    });         
+```
+
+```php
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=gamebfme2test@gmail.com
+MAIL_PASSWORD=Abc@123456
+MAIL_ENCRYPTION=tls
+```
+- Turn on the "Allow less secure apps" on? go to this link https://myaccount.google.com/security#connectedapps. It is owned of gamebfme2test@gmail.com.
+
+- Go to https://accounts.google.com/UnlockCaptcha , and click continue and unlock your account for access through other media/sites.
+
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/9.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/10.png)
 
