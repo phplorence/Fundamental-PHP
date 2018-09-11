@@ -536,9 +536,12 @@ class AuthController extends Controller
 <h4 name="9ddc" id="9ddc" class="graf graf--h4 graf-after--figure">Step 8: Testing&nbsp;(*)</h4>
 - Try accessing test route without token [GET]
 - http://127.0.0.1:8000/api/test
-+ Browser shows error: Symfony \ Component \ HttpKernel \ Exception \ UnauthorizedHttpException
+-- Browser shows error: Symfony \ Component \ HttpKernel \ Exception \ UnauthorizedHttpException
 Token not provided
-+ Postman shows error: 
+-- Postman shows error: 
+
+- Access this link http://127.0.0.1:8000/register in browser to create a new user with Laravel
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/1.png)
 
 
 
