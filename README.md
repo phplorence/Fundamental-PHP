@@ -703,6 +703,7 @@ MAIL_ENCRYPTION=tls
 <form class="form-horizontal" method="POST" action="{{ route('api.login') }}">
 ```
 - Reesult: ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/18.png)
+- Reesult: ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/19.png)
 
 
 
