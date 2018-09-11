@@ -644,3 +644,60 @@ MAIL_ENCRYPTION=tls
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/9.png)
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/10.png)
 
+- We have token is generated and saved in table "verifycation_user". Here is example
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/11.png)
+
+- We use it **eK3qvXHST1FVJ9SugIhnrdksNYbKWD** to verfiy and call this function here:
+
+```php
+/**
+     * API Verify User
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function verifyUser($verification_code)
+    {
+        $check = DB::table('user_verifications')->where('token', $verification_code)->first();
+        if (!is_null($check)) {
+            $user = User::find($check->user_id);
+            if ($user->is_verified == 1) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Account already verified..'
+                ]);
+            }
+            $user->update(['is_verified' => 1]);
+            DB::table('user_verifications')->where('token', $verification_code)->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'You have successfully verified your email address.'
+            ]);
+        }
+        return response()->json(['success' => false, 'error' => "Verification code is invalid."]);
+    }
+```
+
+- We check which route is call when user click link: **http://127.0.0.1:8000/user/verify/eK3qvXHST1FVJ9SugIhnrdksNYbKWD**
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/12.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/13.png)
+
+<p name="3a04" id="3a04" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Login</strong><br>Create a POST request to api/login with form-data under Body tab.</p>
+
+### There are two ways:
+#### Login with normal website: 
+- Specify route to call:
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/14.png)
+- Check database: 
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/15.png)
+- Open url: http://127.0.0.1:8000/login
+- Result after login website successfully
+
+
+
+- Create a POST request to api/login with form-data under Body tab.
+
+
+
+
+
