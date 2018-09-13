@@ -791,3 +791,15 @@ class TestController extends Controller
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/24.png)
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/25.png)
 
+#### Done for now
+```php
+    protected function setAuthenticationHeader($response, $token = null)
+    {
+        $token = $token ?: $this->auth->refresh();
+        $response->headers->set('Authorization', 'Bearer '.$token);
+
+        return $response;
+    }
+```
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/26.png)
+
