@@ -774,4 +774,20 @@ class TestController extends Controller
 
 
 #### How to authenticate with it.
+- Open **BaseMiddleware.php**
+
+```php
+    public function checkForToken(Request $request)
+    {
+        \Illuminate\Support\Facades\Log::info(request()->header('api_token'));
+        \Illuminate\Support\Facades\Log::info($request->header('api_token'));
+        if (! $this->auth->parser()->setRequest($request)->hasToken()) {
+            throw new UnauthorizedHttpException('jwt-auth', 'Token not provided');
+            \Illuminate\Support\Facades\Log::info("Token is not provide!");
+        }
+    }
+```
+
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/24.png)
+![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/25.png)
 
