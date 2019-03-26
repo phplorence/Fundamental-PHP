@@ -5,6 +5,9 @@
 >> - [Setting up a Laravel Project](#setting-up-a-laravel-project)
 
     php --version 
+    
+    sudo kill `sudo lsof -t -i:8000`
+    
     composer
     composer create-project laravel/laravel getting-started
     Alt + F12 (PHP Storm)
