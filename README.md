@@ -809,3 +809,7 @@ class TestController extends Controller
 ```
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/26.png)
 
+
+## ISSUE PHP
+
+# NOT LOAD VIEW CORRECTLY => DUMMY DATA ON IT VIEW
