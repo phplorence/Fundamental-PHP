@@ -10,6 +10,9 @@
     
     composer
     composer create-project laravel/laravel getting-started
+    
+    php artisan key:generate
+    
     Alt + F12 (PHP Storm)
     php artisan serve
     
