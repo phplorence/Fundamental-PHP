@@ -810,6 +810,12 @@ class TestController extends Controller
 ![alt text](https://github.com/phplorence/Tokend-Based-Laravel/blob/master/jwt/img/26.png)
 
 
+### Running file Seeds
+```php
+php artisan db:seed --class=UsersTableSeeder
+```
+
+
 ## ISSUE PHP
 
 # NOT LOAD VIEW CORRECTLY => DUMMY DATA ON IT VIEW
