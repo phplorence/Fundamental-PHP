@@ -813,6 +813,33 @@ class TestController extends Controller
 ### Running file Seeds
 ```php
 php artisan db:seed --class=UsersTableSeeder
+
+
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Brand;
+
+class BrandsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Brand::create([
+            'brand_name' => 'Adidas'
+            //'brand_name' => 'Nike'
+         ]);
+         Brand::create([
+           // 'brand_name' => 'Adidas'
+            'brand_name' => 'Nike'
+         ]);
+    }
+}
+
 ```
 
 
