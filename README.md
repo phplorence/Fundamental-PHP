@@ -845,4 +845,9 @@ class BrandsTableSeeder extends Seeder
 
 ## ISSUE PHP
 
+# ISSUE COMMON
+- Delete composer.lock 
+- Change 7.0.0 (PHP Versions)
+- Change "laravel/framework": "^5.5", (Sutable with 7.0.0)
+
 # NOT LOAD VIEW CORRECTLY => DUMMY DATA ON IT VIEW
