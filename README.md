@@ -4,6 +4,8 @@
 >> - [Setting up a Laravel Project](#setting-up-a-laravel-project)
 >> - [Setting up a Laravel Project](#setting-up-a-laravel-project)
 
+    kill $(lsof -t -i:8000)
+    
     php --version 
     
     sudo kill `sudo lsof -t -i:8000`
