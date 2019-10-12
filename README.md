@@ -71,6 +71,18 @@
     php artisan vendor:publish --tag=datatables
     
     ALTER TABLE tablename AUTO_INCREMENT = 1
+    
+#Database
+
+```php
+php artisan migrate
+```
+
+```php
+php artisan make:migration create_<table names>_table --create=<table names>
+php artisan make:migration drop_users_table
+php artisan migrate --path=/database/migrations/drop_users_table.php
+```
 
 # Setting up a Laravel Project
 Command line: 
